@@ -1,0 +1,621 @@
+%%==============================================================
+%% Adaptação do Modelo de TCC para o curso de Bacharelado em
+%% Sistemas de Informação da Universidade Federal do Acre
+%% Autor original: Manoel Limeira (juniorlimeiras@gmail.com)
+%% Adaptação para RELATÓRIO DE ESTAGIO: Christopher Ric Coelho Saar (cristophersaar@gmail.com)
+%% Última versão Julho/2023
+%% Arquivo em formato UTF-8
+%% Compilar com pdftex
+%% Precisa do arquivo abntex2-UFAC.sty
+%%==============================================================
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				    % tamanho da fonte
+	openright,			    % capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			    % para impressão só no anverso. Oposto a twoside
+	a4paper,			    % tamanho do papel.
+    % -- opções do pacote abntex2 --
+    % chapter=TITLE,        % Títulos em maiúsculas
+    sumario=tradicional,    % Sumário padrão memoir 
+    % -- opções do pacote babel --
+	english,			    % idioma adicional para hifenização
+	brazil,				    % idioma principal do documento
+	]{abntex2}              
+
+
+
+% Pacotes fundamentais
+\usepackage{abntex2-UFAC}        % Personalização para a Universidade Federal do Acre
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte de saída
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{booktabs}           % \toprule, \midrule e \bottomrule para tabelas
+% Sistema autor-data com títulos nas referências em negrito
+\usepackage[alf,abnt-emphasize=bf]{abntex2cite}	
+%Títulos em fonte Times
+\usepackage{mathptmx}
+\renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
+%figuras
+\usepackage[outdir=./]{epstopdf}
+\usepackage{epsfig,graphicx}
+\usepackage{pdfpages}
+%
+\usepackage{float} 
+
+% ---
+% CONFIGURAÇÕES DE PACOTES
+% ---
+
+% Informações de dados para CAPA e FOLHA DE ROSTO
+\titulo{Relatório de Estágio Curricular Obrigatório - 2Pi Studio}
+\autor{Christopher Ric Coelho Saar} 
+\local{Rio Branco}
+\data{2023}
+\orientador{Laura Costa Sarkis}
+
+% redefinido no abntex2-UFAC para aceitar Instituição (default = UFAC)
+%\coorientador{Nome Completo do(a) Coorientador(a)}
+\instituicao{Universidade Federal do Acre}
+
+\campus{Centro de Ciências Exatas e Tecnológicas}      % pacote abntex2-UFAC
+\curso{Curso de Bacharelado em Sistemas de Informação} % pacote abntex2-UFAC
+\membrobancaA{Wilker Luiz Gadelha Maia}          			 % pacote abntex2-UFAC default = UFAC
+% \membrobancaB[UFAM]{Membro(a) da Banca B}				 % pacote abntex2-UFAC default = UFAC
+\databanca{\today}                          			 % pacote abntex2-UFAC
+
+% O preambulo deve conter o tipo do trabalho, o objetivo,
+% o nome da instituição e a área de concentração
+\preambulo{Relatório de estágio supervisionado
+apresentado como exigência parcial para
+obtenção do grau de bacharel em
+Sistemas de Informação da Universidade
+Federal do Acre.}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% informações para o arquivo pdf de saída
+% Interessante alterar a cor dos links para preto(black)
+% na versão final para imprimir
+\makeatletter
+\hypersetup{
+        % metadados
+		pdftitle={\@title},
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		colorlinks=false,   % false: links em frame; true: links coloridos
+    	linkcolor=black,   % cor dos links no documento
+    	citecolor=black,    % cor dos links para a bibliografia
+    	filecolor=magenta, % cor dos links para arquivos
+		urlcolor=blue,     % cor dos links para sites
+		bookmarksdepth=4   % profundidade do sumário do PDF
+}
+\makeatother
+% ---
+
+\begin{document}
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+% Capa
+\imprimircapa
+
+% Folha de rosto
+\imprimirfolhaderosto
+% ---
+
+\imprimirfolhadeaprovacao
+
+% RESUMOS
+%% Resumo em inglês
+\begin{resumo}
+    \noindent
+    % inserir o resumo aqui
+
+O cenário empresarial contemporâneo demanda agilidade, eficiência operacional e gestão eficaz de recursos, e o crescimento notável da agência 2PI Studio destacou a necessidade de integrar tecnologias modernas e conceitos da engenharia de software. A automação de processos, como o registro de horas e o agendamento de projetos, promete não apenas eficiência, mas também uma gestão mais eficaz das atividades da equipe. O projeto desenvolvido concentrou-se na criação de um sistema de gestão de atividades e recursos humanos, e alinhado a metodologias ágeis. Essa solução não só atendeu às necessidades específicas da 2PI Studio, mas também visa contribuir para o desenvolvimento contínuo da agência.
+O estágio teve um impacto significativo na expansão das capacidades operacionais da agência, reforçando sua posição no mercado. Este relatório detalha o contexto do estágio, descreve os desafios enfrentados e as soluções propostas, destacando métodos, tecnologias e práticas utilizadas.
+
+    \vspace{\onelineskip}
+
+    \noindent
+    \textbf{Palavras-chave}: Engenharia de Software. Desenvolvimento Ágil. React. ExpressJs. API Rest.
+\end{resumo}
+%% ---
+
+% MODIFIED: Texto
+%% Resumo em inglês
+\begin{resumo}[Abstract]
+    \begin{otherlanguage*}{english}
+        \noindent
+        % inserir o abstract aqui
+        The contemporary business scenario demands agility, operational efficiency and effective resource management, and the remarkable growth of the 2PI Studio agency highlighted the need to integrate modern technologies and software engineering concepts. Automating processes, such as time recording and project scheduling, promises not only efficiency, but also more effective management of team activities. The project developed focused on creating an activity and human resources management system, aligned with agile methodologies. This solution not only met 2PI Studio's specific needs, but also aims to contribute to the agency's ongoing development. The internship had a significant impact on expanding the agency's operational capabilities, strengthening its position in the market. This report details the context of the internship, describes the challenges faced and the proposed solutions, highlighting methods, technologies and practices used.
+        \vspace{\onelineskip}
+
+        \noindent
+        \textbf{Key-words}: Software Engineering. Agile Development. React. ExpressJs. API Rest.
+    \end{otherlanguage*}
+\end{resumo}
+
+
+% inserir lista de ilustrações
+%\pdfbookmark[0]{\listfigurename}{lof}
+%\listoffigures*
+%\cleardoublepage
+% ---
+
+% inserir lista de tabelas
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+
+% Lista de siglas e abreviaturas (opcional)
+% sintaxe: \item [sigla] Descrição da sigla
+
+
+% Lista de símbolos (opcional)
+% sintaxe: \item [simbolo] Descrição do símbolo
+
+%\begin{simbolos}
+%\item[$\infty$ ] Infinito
+%\end{simbolos}
+
+
+% inserir o sumario
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+%Modifique a estrutura dos capítulos e seções de acordo com a necessidade do seu trabalho
+
+\chapter{Introdução}\label{sec:Introdução}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Justificativa da pesquisa}\label{sec:Justificativa}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Metodologia}\label{sec:Metodologia}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\chapter{Fundamentação teórica}\label{sec:FundTeórica}\thispagestyle{empty}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Engenharia de Software}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Processo de Software}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Desenvolvimento Ágil}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Scrum}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Desenvolvimento baseado em componentes}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Desenvolvimento Web}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Protocolo HTTP}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Arquitetura Cliente-Servidor}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Demonstração da arquitetura cliente-servidor}
+    \label{fig:server-client}}
+    \includegraphics[width=0.7\linewidth]{figuras/cliente.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\chapter{Estágio supervisionado}\label{sec:EstagioSuper}\thispagestyle{empty}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Empresa}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Logo da 2PI Studio}
+    \label{fig:ppiLogo}}
+    \includegraphics[width=0.7\linewidth]{figuras/ppi-logo.png}
+    \fonte{2Pi Studio (\url{https://2pistudio.com.br}).}
+\end{figure}
+
+\section{Estrutura organizacional}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Organograma da 2PI Studio}
+    \label{fig:organograma}}
+    \includegraphics[width=1\linewidth]{figuras/organograma.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\section{Atividades Desenvolvidas}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Identificação do problema}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Levantamento de requisitos}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|p{5cm}|c|}
+\hline
+\textbf{ID} & \textbf{Funcionalidade} & \textbf{Necessidades} & \textbf{Classificação} \\
+\hline
+RF1 & Login & Todos os atores irão realizar o login. & Alta \\
+\hline
+RF2 & Cadastro de tarefas & O administrador terá acesso a essas ações. & Alta \\
+\hline
+RF3 & Gerenciamento de tarefas & O administrador terá acesso a essas ações. & Alta \\
+\hline
+RF4 & Lista de tarefas & O administrador terá acesso. & Alta \\
+\hline
+RF5 & Atribuição de tarefas & O administrador terá acesso. & Alta \\
+\hline
+RF6 & Gerenciamento posterior de tarefas & O administrador terá acesso. & Alta \\
+\hline
+RF7 & Visualização de atividades & Todos terão acesso. & Alta/médio \\
+\hline
+RF8 & Criação de usuários & O administrador terá acesso. & Alta \\
+\hline
+RF9 & Gerência de usuários & O administrador terá acesso. & Alta \\
+\hline
+RF10 & Gerência do próprio perfil & Todos terão acesso. & Alta \\
+\hline
+RF11 & Controle de receita & O administrador terá acesso. & Médio \\
+\hline
+\end{tabular}
+{\caption{Requisitos Funcionais}
+\label{tab:requisitosFuncionais}}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|p{7cm}|c|c|}
+\hline
+\textbf{ID} & \textbf{Requisitos} & \textbf{Categoria} & \textbf{Classificação} \\
+\hline
+RNF1 & Lorem ipsum dolor sit amet, consectetur adipiscing elit. & Apresentação & Normal \\
+\hline
+RNF2 & Lorem ipsum dolor sit amet, consectetur adipiscing elit. & Implementação   & Alto \\
+\hline
+RNF3 & Lorem ipsum dolor sit amet, consectetur adipiscing elit. & Usabilidade & Alto \\
+\hline
+RNF4 & Lorem ipsum dolor sit amet, consectetur adipiscing elit. & Usabilidade & Alto \\
+\hline
+\end{tabular}
+{\caption{Requisitos Não Funcionais}\label{tab:requisitosNaoFuncionais}}
+
+\end{table}
+
+\subsection{Revisão de apoio bibliográfico}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Elaboração da solução}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de \textit{Demonstração do fluxo de demanda.}}
+    \label{fig:fluxoDemanda}}
+    \includegraphics[width=1\linewidth]{figuras/fluxo_demanda.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsection{Prototipação}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Processo seguido durante a prototipação, utilizando PoC}
+    \label{fig:proofOfConcept}}
+    \includegraphics[width=1\linewidth]{figuras/proofOfConcept.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsection{Desenvolvimento da solução - Backend}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Models: O que são?}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de \textit{model}: definição de atribudos da entidade Usuário (\textit{user}).}
+    \label{fig:modelUser}}
+    \includegraphics[width=0.6\linewidth]{figuras/user.model.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsubsection{Controllers: O que são?}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de \textit{controller}: função para criação de novo usuário.}
+    \label{fig:createUser}}
+    \includegraphics[width=0.6\linewidth]{figuras/create.user.controller.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsubsection{Direcionando Requisições}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{\textit{Routes}: O que são?}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de \textit{router}: indexação de rotas para uso de funções da \textit{Controller} responsável pelos usuários}
+    \label{fig:1q_declaracao}}
+    \includegraphics[width=0.8\linewidth]{figuras/user.routes.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsubsection{Integração: Models, Controllers e Rotas}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Desenvolvimento do Frontend}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de \textit{component}: botão parametrizado via \textit{props} pelo \textit{parent}}
+    \label{fig:exemplo-componente}}
+    \includegraphics[width=0.8\linewidth]{figuras/button-component-example.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de comportamento entre \textit{components}: elemento pai passando parâmetros via \textit{props} para o elemento filho.}
+    \label{fig:exemplo-componente-parent-children}}
+    \includegraphics[width=0.8\linewidth]{figuras/buttons-parents-component-example.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsubsection{Gerenciamento de Estado: Redux e Thunk}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Rotas no Frontend: Navegação Coesa}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Testes Unitários: Garantindo a Qualidade do Código}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Componentes React: Construindo a Interface}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Componentes Funcionais e de Classe: Escolhas de Implementação}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Gerenciamento de Estado: useState, useContext e Redux}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de declaração e manipulação de estado em nível de componente.}
+    \label{fig:exemplo-useState}}
+    \includegraphics[width=0.8\linewidth]{figuras/useState-example.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de utilização do estado.}
+    \label{fig:usage-useState}}
+    \includegraphics[width=0.8\linewidth]{figuras/state-usage-example.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsubsection{Conclusão do Desenvolvimento Frontend}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Integração com o Backend: Requisições à API}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Exemplo de requisição feita com uso da ferramenta Axios.}
+    \label{fig:axios-request-example}}
+    \includegraphics[width=0.8\linewidth]{figuras/axios-request-example.png}
+    \fonte{Elaboração própria.}
+\end{figure}
+
+\subsubsection{Rotas no Frontend: Navegação Coesa}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Estilização: CSS Modules e Pré-processadores}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Conclusão da Integração: Backend e Frontend Coesos}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Testes e Refinamento}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Testes Automatizados: Garantindo a Conformidade}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Testes de Usabilidade: Avaliação da Experiência do Usuário}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Testes de Desempenho: Garantindo Eficiência}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Refinamento Contínuo: Iterações e Melhorias}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Implantação e Monitoramento}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Validação}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Documentação}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\sectionsection*{Resultados Obtidos}
+\addcontentsline{toc}{section}{Resultados Obtidos}
+
+\section{Resultados Obtidos}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Demonstração da página de listagem clientes.}
+    \label{fig:customers}}
+    \includegraphics[width=1\linewidth]{figuras/customers.png}
+    \fonte{Elaboração própria.}
+\end{figure} 
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Demonstração da página de métricas financeiras.}
+    \label{fig:homepage}}
+    \includegraphics[width=1\linewidth]{figuras/home.png}
+    \fonte{Elaboração própria.}
+\end{figure} 
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Demonstração da página de calendário com exibição de atividades.}
+    \label{fig:calendario-atividades}}
+    \includegraphics[width=1\linewidth]{figuras/schedule.png}
+    \fonte{Elaboração própria.}
+\end{figure} 
+
+\begin{figure}[H]
+    \centering
+    \textbf{\caption{Demonstração da página de detalhes de atividades.}
+    \label{fig:detalhes-atividades}}
+    \includegraphics[width=1\linewidth]{figuras/details-tasks.png}
+    \fonte{Elaboração própria.}
+\end{figure} 
+
+\section{Considerações sobre o Capítulo}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\chapter{Considerações Finais e Recomendações}\thispagestyle{empty}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Recomendações}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% Referências bibliográficas
+
+\bibliography{referencias}\thispagestyle{empty}
+
+% Caso sejam necessários apêndices ou anexos em seu documento
+% Use os ambientes abaixo
+
+%% Apêndices
+\begin{apendicesenv}
+%
+%% Imprime uma página indicando o início dos apêndices
+\partapendices
+%
+\chapter{Documento de Requisitos}
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figuras/req/REQ/Documento de Requisitos de Software - 2PI ESTUDIO_page-0001.jpg}
+    \fonte{Elaboração própria.}
+\end{figure} 
+
+
+\end{apendicesenv}
+
+%% Inicia os apêndices
+
+
+\end{document}
