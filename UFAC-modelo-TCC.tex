@@ -20,7 +20,7 @@
     sumario=tradicional,    % Sumário padrão memoir 
     % -- opções do pacote babel --
 	english,			    % idioma adicional para hifenização
-	brazil,				    % idioma principal do documento
+	brazilian,				    % idioma principal do documento
 	]{abntex2}              
 
 
@@ -44,6 +44,24 @@
 \usepackage{pdfpages}
 %
 \usepackage{float} 
+
+% Figuras do relatório original ainda não enviadas ao repositório.
+% Quando a imagem existir, o arquivo real é inserido automaticamente.
+% Na ausência dele, exibimos um marcador, sem inventar ilustrações.
+\newcommand{\incluirfigura}[2][]{%
+  \IfFileExists{#2}{%
+    \includegraphics[#1]{#2}%
+  }{%
+    \fbox{%
+      \begin{minipage}[c][2.5cm][c]{0.85\linewidth}
+        \centering
+        \textbf{Imagem pendente}\\[0.5em]
+        {\footnotesize\texttt{\detokenize{#2}}}
+      \end{minipage}%
+    }%
+    \PackageWarning{relatorio_estagio}{Imagem ausente: \detokenize{#2}}%
+  }%
+}
 
 % ---
 % CONFIGURAÇÕES DE PACOTES
@@ -239,7 +257,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Demonstração da arquitetura cliente-servidor}
     \label{fig:server-client}}
-    \includegraphics[width=0.7\linewidth]{figuras/cliente.png}
+    \incluirfigura[width=0.7\linewidth]{figuras/cliente.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -255,7 +273,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Logo da 2PI Studio}
     \label{fig:ppiLogo}}
-    \includegraphics[width=0.7\linewidth]{figuras/ppi-logo.png}
+    \incluirfigura[width=0.7\linewidth]{figuras/ppi-logo.png}
     \fonte{2Pi Studio (\url{https://2pistudio.com.br}).}
 \end{figure}
 
@@ -267,7 +285,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Organograma da 2PI Studio}
     \label{fig:organograma}}
-    \includegraphics[width=1\linewidth]{figuras/organograma.png}
+    \incluirfigura[width=1\linewidth]{figuras/organograma.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -347,7 +365,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de \textit{Demonstração do fluxo de demanda.}}
     \label{fig:fluxoDemanda}}
-    \includegraphics[width=1\linewidth]{figuras/fluxo_demanda.png}
+    \incluirfigura[width=1\linewidth]{figuras/fluxo_demanda.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -359,7 +377,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Processo seguido durante a prototipação, utilizando PoC}
     \label{fig:proofOfConcept}}
-    \includegraphics[width=1\linewidth]{figuras/proofOfConcept.png}
+    \incluirfigura[width=1\linewidth]{figuras/proofOfConcept.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -375,7 +393,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de \textit{model}: definição de atribudos da entidade Usuário (\textit{user}).}
     \label{fig:modelUser}}
-    \includegraphics[width=0.6\linewidth]{figuras/user.model.png}
+    \incluirfigura[width=0.6\linewidth]{figuras/user.model.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -387,7 +405,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de \textit{controller}: função para criação de novo usuário.}
     \label{fig:createUser}}
-    \includegraphics[width=0.6\linewidth]{figuras/create.user.controller.png}
+    \incluirfigura[width=0.6\linewidth]{figuras/create.user.controller.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -403,7 +421,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de \textit{router}: indexação de rotas para uso de funções da \textit{Controller} responsável pelos usuários}
     \label{fig:1q_declaracao}}
-    \includegraphics[width=0.8\linewidth]{figuras/user.routes.png}
+    \incluirfigura[width=0.8\linewidth]{figuras/user.routes.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -419,7 +437,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de \textit{component}: botão parametrizado via \textit{props} pelo \textit{parent}}
     \label{fig:exemplo-componente}}
-    \includegraphics[width=0.8\linewidth]{figuras/button-component-example.png}
+    \incluirfigura[width=0.8\linewidth]{figuras/button-component-example.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -427,7 +445,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de comportamento entre \textit{components}: elemento pai passando parâmetros via \textit{props} para o elemento filho.}
     \label{fig:exemplo-componente-parent-children}}
-    \includegraphics[width=0.8\linewidth]{figuras/buttons-parents-component-example.png}
+    \incluirfigura[width=0.8\linewidth]{figuras/buttons-parents-component-example.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -459,7 +477,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de declaração e manipulação de estado em nível de componente.}
     \label{fig:exemplo-useState}}
-    \includegraphics[width=0.8\linewidth]{figuras/useState-example.png}
+    \incluirfigura[width=0.8\linewidth]{figuras/useState-example.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -467,7 +485,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de utilização do estado.}
     \label{fig:usage-useState}}
-    \includegraphics[width=0.8\linewidth]{figuras/state-usage-example.png}
+    \incluirfigura[width=0.8\linewidth]{figuras/state-usage-example.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -483,7 +501,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Exemplo de requisição feita com uso da ferramenta Axios.}
     \label{fig:axios-request-example}}
-    \includegraphics[width=0.8\linewidth]{figuras/axios-request-example.png}
+    \incluirfigura[width=0.8\linewidth]{figuras/axios-request-example.png}
     \fonte{Elaboração própria.}
 \end{figure}
 
@@ -531,9 +549,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-\sectionsection*{Resultados Obtidos}
-\addcontentsline{toc}{section}{Resultados Obtidos}
-
 \section{Resultados Obtidos}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -542,7 +557,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Demonstração da página de listagem clientes.}
     \label{fig:customers}}
-    \includegraphics[width=1\linewidth]{figuras/customers.png}
+    \incluirfigura[width=1\linewidth]{figuras/customers.png}
     \fonte{Elaboração própria.}
 \end{figure} 
 
@@ -550,7 +565,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Demonstração da página de métricas financeiras.}
     \label{fig:homepage}}
-    \includegraphics[width=1\linewidth]{figuras/home.png}
+    \incluirfigura[width=1\linewidth]{figuras/home.png}
     \fonte{Elaboração própria.}
 \end{figure} 
 
@@ -558,7 +573,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Demonstração da página de calendário com exibição de atividades.}
     \label{fig:calendario-atividades}}
-    \includegraphics[width=1\linewidth]{figuras/schedule.png}
+    \incluirfigura[width=1\linewidth]{figuras/schedule.png}
     \fonte{Elaboração própria.}
 \end{figure} 
 
@@ -566,7 +581,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     \centering
     \textbf{\caption{Demonstração da página de detalhes de atividades.}
     \label{fig:detalhes-atividades}}
-    \includegraphics[width=1\linewidth]{figuras/details-tasks.png}
+    \incluirfigura[width=1\linewidth]{figuras/details-tasks.png}
     \fonte{Elaboração própria.}
 \end{figure} 
 
@@ -608,7 +623,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{figuras/req/REQ/Documento de Requisitos de Software - 2PI ESTUDIO_page-0001.jpg}
+    \incluirfigura[width=0.8\linewidth]{figuras/req/REQ/Documento de Requisitos de Software - 2PI ESTUDIO_page-0001.jpg}
     \fonte{Elaboração própria.}
 \end{figure} 
 
