@@ -1,0 +1,59 @@
+\chapter{Fundamentação teórica}\label{cap:fundamentacao}
+
+A informatização do uso de uma sala de computadores exige mais do que a implementação de formulários. É necessário compreender as atividades realizadas no ambiente, especificar regras verificáveis, preservar a consistência dos dados e apresentar operações de maneira acessível. Este capítulo reúne os conceitos que fundamentaram o desenvolvimento, aproveitando a revisão bibliográfica do projeto de estágio.
+
+\section{Engenharia de Software}\label{sec:engenharia}
+
+A Engenharia de Software reúne processos, métodos e práticas voltados à especificação, construção, verificação e evolução de sistemas. Conforme \citeonline{sommerville2016}, o desenvolvimento deve considerar tanto as funcionalidades necessárias quanto atributos de qualidade, manutenção e adequação ao contexto em que o produto será utilizado. Em problemas institucionais, a análise do processo existente ajuda a evitar que decisões técnicas sejam tomadas sem relação com as necessidades dos usuários.
+
+No estágio, a elaboração de uma solução para a biblioteca começou pelo levantamento do funcionamento manual da sala e pela identificação das tarefas que precisariam ser representadas digitalmente. A definição do escopo foi importante porque o conjunto inicial de possibilidades ultrapassava o que seria desenvolvido na primeira versão funcional.
+
+\subsection{Engenharia de requisitos}
+
+Os requisitos funcionais descrevem os serviços e comportamentos esperados de um sistema, enquanto os não funcionais expressam propriedades e restrições relevantes para seu funcionamento. A ISO/IEC/IEEE 29148:2018 orienta os processos de Engenharia de Requisitos e a elaboração de especificações que possam ser compreendidas, avaliadas e verificadas \cite{iso29148_2018}.
+
+No caso estudado, consultar horários, reservar um computador, registrar entrada e saída e gerar relatórios são exemplos de comportamentos funcionais. Integridade dos registros, clareza das mensagens e acessibilidade da interface exemplificam condições de qualidade. A especificação dessas necessidades deve considerar situações excepcionais, como duas tentativas concorrentes de reserva ou a indisponibilidade de um computador já associado a um atendimento.
+
+Uma regra de negócio é uma restrição ou condição particular do domínio, associada à maneira como uma atividade deve ocorrer. Por exemplo, a consulta de disponibilidade precisa respeitar os horários de funcionamento, e a reserva deve ser rejeitada quando o intervalo solicitado entra em conflito com outra utilização válida. Regras dessa natureza não devem depender apenas da apresentação visual; elas precisam ser aplicadas pela camada responsável pelo processamento da operação.
+
+\subsection{Modelagem e documentação}
+
+A modelagem permite representar atores, atividades e dados antes da implementação, tornando mais explícitas as decisões sobre o funcionamento do produto. Diagramas de casos de uso apresentam objetivos e interações dos participantes com o sistema. Diagramas de atividades descrevem sequências de ações, alternativas e condições de passagem entre etapas. As descrições textuais complementam essas representações ao registrar pré-condições, validações e resultados esperados \cite{sommerville2016}.
+
+Esses artefatos contribuem para a comunicação entre as pessoas envolvidas e para a rastreabilidade das funcionalidades. Quando uma regra é alterada, é possível revisar suas consequências nos fluxos, na implementação e nos testes correspondentes. A documentação, portanto, não se limita ao planejamento: também deve acompanhar as mudanças realizadas durante o desenvolvimento.
+
+\section{Interação Humano-Computador}\label{sec:ihc}
+
+A Interação Humano-Computador (IHC) considera as pessoas, suas tarefas e as condições em que utilizam sistemas interativos. \citeonline{barbosaSilva2010} discutem métodos de identificação de necessidades, elaboração de soluções e avaliação da interação. A qualidade de uma interface não depende somente de sua aparência, mas também da compreensão das informações e da facilidade de concluir tarefas.
+
+A ISO 9241-210:2019 apresenta orientações para o projeto centrado nas pessoas, incluindo compreensão do contexto de uso, envolvimento dos usuários e avaliação iterativa das soluções \cite{iso9241_210_2019}. Para a Sala de Informática, essa abordagem é pertinente porque existem necessidades distintas: quem deseja utilizar um computador precisa consultar disponibilidade e registrar o atendimento; quem acompanha a operação precisa identificar sessões ativas e ocorrências; e quem supervisiona o ambiente precisa configurar parâmetros e consultar indicadores.
+
+A prototipação oferece uma maneira de explorar essas necessidades antes de concluir a implementação. Representações navegáveis das telas permitem discutir a sequência de ações, a distribuição dos elementos e o tratamento de situações excepcionais. Após a implementação, verificações funcionais da navegação e avaliações de usabilidade constituem atividades complementares. A existência de uma interface responsiva ou de testes automatizados, por si só, não comprova que uma avaliação de usabilidade com participantes tenha sido realizada.
+
+\section{Banco de dados e integridade da informação}\label{sec:banco}
+
+Sistemas de banco de dados possibilitam o armazenamento estruturado de informações e a definição de vínculos entre entidades. A modelagem e as restrições de integridade contribuem para impedir estados inconsistentes e assegurar que consultas retornem informações compatíveis com os registros armazenados \cite{silberschatz2019}.
+
+No controle de uso da sala, uma sessão representa a permanência de determinado usuário e pode conter diferentes alocações de computador ao longo do atendimento. Reservas representam compromissos futuros associados a intervalos de tempo, enquanto ocorrências registram problemas relacionados aos equipamentos ou às sessões. Essa separação permite preservar um histórico de trocas sem criar uma sessão distinta para cada computador utilizado.
+
+As operações também precisam considerar concorrência. Duas solicitações simultâneas não devem resultar em reservas confirmadas para o mesmo equipamento e intervalo. Restrições no banco e operações transacionais ajudam a preservar invariantes mesmo quando diferentes solicitações chegam em momentos próximos. O tratamento de integridade deve abranger não apenas a criação de registros, mas também alterações, cancelamentos e correções auditadas.
+
+A dimensão temporal merece atenção particular. Horários regulares de funcionamento, exceções pontuais e versões de turnos podem mudar com o tempo. Para que os relatórios históricos permaneçam compreensíveis, alterações posteriores não devem substituir indiscriminadamente as condições que vigoravam quando uma sessão foi realizada. O armazenamento de referências históricas auxilia na reprodução das totalizações.
+
+\section{Arquitetura de aplicações web}\label{sec:arquitetura}
+
+Uma aplicação web normalmente envolve a interação entre um navegador, componentes responsáveis pelo processamento das requisições e um mecanismo de persistência. A separação de responsabilidades favorece a organização e a manutenção do software \cite{sommerville2016}. Essa separação pode ser implementada de diferentes formas, inclusive em uma única aplicação implantável que mantenha módulos internos bem definidos.
+
+O monólito modular reúne a execução dos componentes em uma aplicação, mas organiza responsabilidades como cadastro, configuração, operações, ocorrências e relatórios em áreas distintas do código. Trata-se de uma alternativa que pode simplificar a implantação de um sistema de escopo delimitado, preservando pontos de evolução. A adequação dessa escolha depende do contexto técnico e operacional, não constituindo uma regra geral para todos os sistemas.
+
+Na arquitetura adotada para a aplicação da biblioteca, o backend centraliza as regras de disponibilidade, reservas e sessões. As páginas web utilizam renderização no servidor e atualizações parciais de conteúdo, enquanto uma API permite expor operações e consultas de forma estruturada. A mesma camada de serviços é reutilizada pelas interfaces, reduzindo o risco de regras diferentes para uma operação semelhante. O detalhamento das tecnologias e módulos empregados é apresentado na Seção~\ref{sec:atividades}.
+
+\section{Acessibilidade, verificação e validação}\label{sec:qualidade}
+
+A acessibilidade digital procura oferecer condições de acesso e interação a pessoas com diferentes necessidades. O Modelo de Acessibilidade em Governo Eletrônico (eMAG), versão 3.1, reúne recomendações pertinentes aos serviços digitais públicos \cite{emag2014}. As Web Content Accessibility Guidelines (WCAG) 2.2 apresentam critérios verificáveis relacionados, entre outros aspectos, à navegação por teclado, à identificação de controles, ao foco visível e ao contraste \cite{wcag22_2024}.
+
+Essas referências orientam a revisão de formulários, mensagens e componentes de navegação. A utilização de recomendações de acessibilidade durante o desenvolvimento deve ser diferenciada da comprovação de conformidade integral, que exigiria uma avaliação sistemática dos critérios pertinentes e o registro dos resultados obtidos.
+
+A verificação busca examinar se o sistema atende às especificações e regras definidas, enquanto a validação procura avaliar sua adequação às necessidades do ambiente de uso \cite{sommerville2016}. Testes de regras, APIs, banco de dados e interfaces podem identificar defeitos e regressões. Já a avaliação em contexto real requer a participação dos responsáveis pelo atendimento e a observação das atividades que o sistema deverá apoiar.
+
+No estágio, o desenvolvimento documentado incluiu verificações automatizadas de funcionalidades e fluxos. Tais evidências sustentam afirmações sobre a implementação testada, mas não autorizam concluir, sem dados adicionais, que houve redução mensurada de tempo de atendimento, ganho de produtividade ou implantação permanente na biblioteca.
