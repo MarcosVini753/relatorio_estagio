@@ -1,0 +1,115 @@
+\chapter{Estágio supervisionado}\label{cap:estagio}
+
+Este capítulo apresenta o ambiente em que o estágio foi desenvolvido, a organização dos participantes envolvidos e as atividades realizadas para a construção do sistema web de controle de utilização da Sala de Informática da Biblioteca Central da UFAC. A exposição considera o projeto acadêmico, os registros de frequência e a documentação técnica do repositório da aplicação, distinguindo funcionalidades implementadas de etapas que ainda dependem de validação institucional.
+
+\section{Empresa}\label{sec:empresa}
+
+O estágio foi realizado na Universidade Federal do Acre (UFAC), tendo como unidade de referência a Biblioteca Central Ruy Alberto Costa Lins, localizada no Campus Sede, em Rio Branco. O setor contemplado pelo projeto foi a Sala de Informática, também identificada como Sala Virtual na documentação inicial, espaço que disponibiliza computadores para atividades da comunidade acadêmica.
+
+O recorte do trabalho correspondeu ao controle da utilização desses equipamentos e ao apoio às rotinas de atendimento e acompanhamento gerencial. Assim, a solução não teve como objetivo informatizar os demais serviços da biblioteca. As fichas de presença e os modelos de relatório então utilizados forneceram referências para compreender quais registros precisariam ser preservados e como poderiam ser consolidados em meio digital.
+
+Conforme os registros do estágio, o acompanhamento no setor foi realizado por Nádia Batista Vieira, com orientação acadêmica de Laura Costa Sarkis. As fichas de frequência consultadas documentam atividades entre 27 de maio e 25 de setembro de 2026, desde o levantamento inicial e a modelagem até o desenvolvimento das interfaces, os testes e os ajustes de relatórios.
+
+\section{Estrutura organizacional}\label{sec:estrutura}
+
+O projeto envolveu a relação entre a orientação acadêmica, a supervisão de estágio e as atividades operacionais da Sala de Informática. A orientadora acompanhou a dimensão acadêmica do trabalho, enquanto a supervisão do setor ofereceu referência para compreender o processo existente e discutir necessidades de sua informatização. O desenvolvimento técnico e a elaboração dos artefatos foram conduzidos no âmbito das atividades de estágio.
+
+É importante distinguir essa organização de trabalho dos perfis definidos para o sistema. Na aplicação, o \emph{Usuário da Sala} representa alunos, professores ou técnicos-administrativos que utilizam os computadores; o \emph{Monitor da Sala} acompanha sessões, estados dos equipamentos, ocorrências e correções; e o \emph{Supervisor da Biblioteca} possui funcionalidades adicionais de configuração, inventário e análise gerencial. O papel de \emph{Administrador do Sistema} foi previsto arquiteturalmente, mas não recebeu interface própria no MVP.
+
+Esses perfis descrevem responsabilidades e permissões simuladas da aplicação; não constituem, por si sós, um organograma oficial da Biblioteca Central. A inclusão de uma figura representando a estrutura administrativa formal da unidade depende de confirmação com a instituição.
+
+% EVIDÊNCIA A INSERIR: organograma oficial ou representação validada pela Biblioteca.
+% Não usar a figura "organograma" do estágio do autor do template original.
+
+\section{Atividades desenvolvidas}\label{sec:atividades}
+
+As atividades ocorreram de maneira progressiva, partindo da compreensão do atendimento manual para a construção e revisão do sistema. A sequência descrita a seguir representa os principais conjuntos de trabalho e não uma reprodução diária das fichas de frequência.
+
+\subsection{Levantamento e especificação dos requisitos}
+
+A primeira etapa consistiu na análise do processo de controle de utilização da sala. Foram examinados os registros de presença dos usuários e os modelos de consolidação empregados pela biblioteca. A partir deles, foram identificadas as informações necessárias para registrar atendimentos e produzir relatórios, bem como as relações entre usuários, equipamentos, horários e condições de utilização.
+
+Os requisitos foram organizados segundo as tarefas de quem utiliza a sala e de quem acompanha sua operação. Entre os fluxos prioritários estavam a consulta da disponibilidade dos computadores, a criação de reservas, a entrada e a saída do usuário, a troca de equipamento, o registro de problemas e a consulta de relatórios. Também foram consideradas restrições como evitar reservas conflitantes, impedir uso de equipamentos indisponíveis e manter informações históricas consistentes.
+
+Durante o desenvolvimento, parte do escopo inicial foi reformulada. A fila de espera, por exemplo, deixou de integrar a versão funcional; o acesso institucional autenticado foi mantido como evolução futura. Essa delimitação permitiu concentrar a implementação nas operações centrais de controle da sala e no acompanhamento dos registros realizados.
+
+\subsection{Modelagem e prototipação}
+
+Com os principais requisitos definidos, foram elaborados casos de uso e diagramas de atividades referentes ao Usuário da Sala, ao Monitor da Sala e ao Supervisor da Biblioteca. Esses documentos descrevem o início das operações, as decisões intermediárias e os resultados esperados, contribuindo para explicitar regras que poderiam ser ambíguas apenas em descrições gerais.
+
+Os diagramas de atividades contemplaram, entre outros cenários, a consulta e o agendamento de horários, o registro de entrada, a saída, a troca de computador, a comunicação de problemas e as alterações operacionais realizadas pela equipe. Também foram desenvolvidas representações visuais das telas para discutir a navegação e a apresentação das informações.
+
+Os protótipos serviram como referência para a organização da interface, mas não foram utilizados como fonte definitiva das regras de negócio. Essas regras foram posteriormente consolidadas no backend e nos documentos de arquitetura e produto, permitindo que as interfaces apresentassem os resultados das mesmas operações sem reproduzir validações independentes.
+
+% EVIDÊNCIA A INSERIR: selecionar um diagrama de caso de uso e um fluxo
+% entre os arquivos de docs/diagrams do repositório estagio (branch dev).
+
+\subsection{Definição da arquitetura e preparação do ambiente}
+
+A arquitetura adotada foi a de um monólito modular desenvolvido com Python, Django e Django REST Framework, utilizando PostgreSQL para persistência. A aplicação foi organizada em módulos de responsabilidades distintas, incluindo configuração, computadores, operações, ocorrências, relatórios, auditoria e apresentação web.
+
+Foram configurados o banco de dados, as migrações de esquema, os serviços iniciais da aplicação e o ambiente de execução com Docker Compose. A documentação técnica registra o uso de interfaces de programação de aplicações (APIs), esquemas de validação, tratamento padronizado de erros e especificação OpenAPI, além de ferramentas de formatação, verificações estáticas e integração contínua.
+
+No modelo de domínio, foram diferenciadas as reservas, as sessões de uso e as alocações de computador. Essa decisão permite representar a permanência de uma pessoa em uma única sessão mesmo quando há troca de equipamento. Também foi distinguido o estado operacional persistido do computador, como disponível, em manutenção ou inativo, dos estados de ocupado ou reservado, calculados a partir das sessões e reservas existentes.
+
+A organização dessas entidades exigiu restrições para evitar sobreposições de períodos e preservar a integridade das operações. Regras críticas foram implementadas nos serviços e no banco de dados, considerando que verificações feitas apenas na interface não seriam suficientes diante de solicitações simultâneas.
+
+\subsection{Implementação das regras operacionais}
+
+A implementação das funcionalidades centrais contemplou a consulta de computadores, a criação e o cancelamento de reservas, a entrada imediata e vinculada a uma reserva, o acompanhamento da sessão ativa, a troca de equipamento e o registro de saída. Também foram desenvolvidos mecanismos de registro e tratamento de ocorrências, alteração de estados operacionais e correção auditada de históricos.
+
+O sistema trabalha com um calendário operacional que estabelece as janelas de funcionamento da sala e admite horários regulares, períodos temporários e exceções pontuais. As reservas são organizadas em intervalos consecutivos de 15 minutos, com validação das condições de disponibilidade. Na versão implementada, a consulta é limitada ao dia atual e ao seguinte: o uso imediato ocorre no dia corrente, e as reservas podem ser feitas para horários futuros de hoje ou de amanhã.
+
+Foram definidas tolerâncias operacionais para entrada vinculada a reserva e para encerramento de sessão, bem como mecanismos de reconciliação dos prazos vencidos. Essas rotinas evitam que reservas ou sessões permaneçam apresentadas como válidas após o esgotamento de prazos relevantes, independentemente de o usuário atualizar manualmente a página.
+
+Outro conjunto de regras trata da indisponibilidade de computadores. Quando um equipamento passa à condição de manutenção ou inatividade, a aplicação considera os impactos sobre as sessões e reservas relacionadas, realizando transferências ou cancelamentos conforme a possibilidade de utilização de outro computador. O procedimento foi projetado para manter coerência entre registros operacionais e histórico.
+
+\subsection{Desenvolvimento das interfaces}
+
+A camada de apresentação foi construída com Django Templates, HTMX, Alpine.js e Tailwind CSS, seguindo uma estratégia de interface responsiva e atualizações parciais orientadas pelo servidor. A aplicação permite selecionar perfis simulados, mas essa seleção não representa autenticação institucional real. As regras efetivas continuam concentradas nos serviços do backend.
+
+A área do Usuário da Sala oferece consulta da situação da sala, visualização de computadores e horários, reservas, início e encerramento de sessões, troca de equipamento e comunicação de problemas. A área do Monitor da Sala apresenta informações operacionais, como sessões ativas, computadores, ocorrências e histórico, permitindo ações de acompanhamento e correção conforme as regras definidas.
+
+O Supervisor da Biblioteca dispõe das funcionalidades operacionais e de recursos adicionais para cadastrar computadores, configurar turnos, administrar o calendário e suas exceções, publicar avisos, ajustar políticas e analisar relatórios. As telas foram organizadas com atenção à navegação em computadores e dispositivos móveis, incluindo revisão de mensagens, comportamento dos formulários e estados visuais dos componentes.
+
+Foram realizados ajustes de acessibilidade relacionados à navegação por teclado, ao foco visível e ao contraste. Esses ajustes demonstram preocupação com a interação, mas não devem ser interpretados como certificação de conformidade integral com os critérios de acessibilidade.
+
+% EVIDÊNCIAS A INSERIR: capturas reais das telas dos três perfis.
+% As figuras devem ser produzidas a partir da aplicação, não do template anterior.
+
+\subsection{Relatórios e indicadores de utilização}
+
+A produção de relatórios foi uma das necessidades identificadas no processo manual de acompanhamento da sala. O sistema implementou visões diária, mensal e anual, além de indicadores de utilização, geradas a partir dos registros operacionais. Esses resultados são calculados com base em sessões, alocações, reservas, calendário, turnos e informações relacionadas.
+
+A abordagem evita o lançamento de totais desconectados dos eventos que lhes deram origem. Os relatórios permitem diferentes recortes e agrupamentos, incluindo período, turno e computador, e podem ser exportados nos formatos CSV, XLSX e PDF. A documentação do sistema registra verificações de coerência entre os dados apresentados nas telas, as respostas das APIs e os arquivos gerados.
+
+A versão documentada não possui relatório semanal específico, embora essa possibilidade estivesse mencionada no planejamento inicial. Também não há evidências de que os relatórios tenham sido utilizados regularmente pela biblioteca em produção. Por esse motivo, os resultados aqui descritos correspondem às funcionalidades construídas e testadas no ambiente de desenvolvimento.
+
+\subsection{Testes, correções e documentação}
+
+O desenvolvimento foi acompanhado por testes de regras de negócio, APIs, restrições de banco de dados e fluxos de interface. A documentação registra casos envolvendo conflitos de reservas, indisponibilidade de computadores, transições de sessões, alterações de calendário, histórico de alocações e acesso aos relatórios conforme os perfis simulados.
+
+Também foram estruturados testes de ponta a ponta, executados sobre a aplicação Django com banco PostgreSQL de teste e cenários de dados controlados. A utilização de dados fictícios e relógio controlado auxilia na repetição de cenários dependentes de horários, enquanto a verificação das respostas do backend permite avaliar comportamentos que não são observáveis apenas pela interface.
+
+As correções incluíram ajustes de validação, refinamento de formulários, consistência das consultas, apresentação de estados e desempenho de operações específicas. O código foi mantido em repositório Git e acompanhado por documentos de produto, arquitetura, decisões arquiteturais, diagramas e orientações de configuração. Esses artefatos fornecem uma referência para manutenção e continuidade do trabalho.
+
+\section{Resultados obtidos}\label{sec:resultados}
+
+O principal resultado técnico do estágio foi a construção de uma versão funcional de demonstração de um sistema web para apoiar o controle de utilização da Sala de Informática. A documentação da aplicação registra a implementação de reservas, sessões de uso, troca de computadores, saída, ocorrências, controle de equipamentos, calendário operacional e relatórios gerenciais.
+
+As interfaces dos três perfis centrais foram implementadas: o Usuário da Sala pode executar os principais fluxos de utilização; o Monitor da Sala dispõe de recursos para acompanhar e corrigir a operação; e o Supervisor da Biblioteca acessa configurações e informações consolidadas. O sistema também dispõe de APIs e de mecanismos de integridade para preservar a coerência dos registros em operações críticas.
+
+No conjunto de relatórios, a implementação inclui visões diária, mensal e anual, indicadores e exportações em CSV, XLSX e PDF. Os dados são obtidos dos registros operacionais, em vez de totais preenchidos manualmente. Essa característica oferece uma base técnica para reproduzir análises de utilização e investigar a origem dos resultados apresentados.
+
+A verificação foi apoiada por testes automatizados e cenários fictícios que abrangem serviços, banco de dados, APIs e interfaces. A documentação técnica descreve essas coberturas e os procedimentos de execução. Entretanto, este relatório ainda não apresenta métricas consolidadas de aprovação dos testes, medições de desempenho em ambiente real nem resultados de uma avaliação de usabilidade com participantes da biblioteca. Esses elementos devem ser acrescentados somente após coleta e verificação das evidências correspondentes.
+
+Permanecem fora do produto implementado a fila de espera, a autenticação institucional real, a interface funcional própria do Administrador e o relatório semanal específico. Essa delimitação deve ser considerada na comparação entre o projeto inicialmente proposto e a versão entregue para demonstração.
+
+Dessa forma, os resultados demonstram a materialização técnica de parte substancial do escopo planejado e a disponibilidade de uma base documentada para continuidade e validação. Não se afirma, contudo, que o sistema já substituiu o controle manual utilizado pela biblioteca ou que produziu ganhos quantitativos de produtividade, pois tais conclusões exigem acompanhamento no ambiente institucional.
+
+% PENDÊNCIAS PARA A VERSÃO FINAL:
+% 1. Inserir capturas de tela verificadas dos três perfis e dos relatórios.
+% 2. Inserir diagramas selecionados e respectivas fontes.
+% 3. Confirmar o organograma da Biblioteca com a supervisão.
+% 4. Apresentar evidências verificáveis de testes/avaliações, se disponíveis.
+% 5. Diferenciar claramente demonstração, validação local e implantação real.

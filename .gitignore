@@ -1,0 +1,102 @@
+## LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+## Intermediate documents
+*.dvi
+*.xdv
+*-converted-to.*
+
+## Generated if empty string is given at "owner" prompt
+*.pdf
+
+## Bibliography auxiliary files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+## Build tool auxiliary files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+## Build tool directories
+latex.out/
+
+## Auxiliary and intermediate files from other packages
+*.alg
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.idx
+*.ilg
+*.ind
+*.loa
+*.nav
+*.snm
+*.vrb
+
+## Listings package
+*.lol
+
+## Makeidx package
+*.maf
+*.mlf
+*.mlt
+*.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
+
+## Changes package
+*.soc
+
+## todonotes package
+*.tdo
+
+## Easy-hierarchical-todo-list package
+*.lod
+
+## Glossaries package
+*.xdy
+
+## TikZ/PGF
+*.dpth
+*.md5
+*.auxlock
+
+## Endfloat package
+*.ttt
+*.fff
+
+## Latexian
+TSWLatexianTemp*
+
+## Editors
+*.bak
+*.swp
+*~
+
+## OS generated files
+.DS_Store
+Thumbs.db

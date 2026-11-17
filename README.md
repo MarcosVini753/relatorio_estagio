@@ -1,40 +1,46 @@
-# Relatório de estágio — UFAC
+# Relatório de Estágio Supervisionado — UFAC
 
-Projeto LaTeX de relatório de estágio adaptado por Christopher Ric Coelho Saar com base no template de TCC de Sistemas de Informação da UFAC.
+Relatório de estágio de **Marcos Vinícius Moraes Costa**, referente ao desenvolvimento de um sistema web para gestão e controle de uso da Sala de Informática da Biblioteca Central da Universidade Federal do Acre (UFAC), sob orientação acadêmica de **Laura Costa Sarkis**.
 
-## Compilação no Overleaf
+A organização dos capítulos segue o documento **ModelodeRelatoriodeEstagio_template.docx**, disponibilizado pela UFAC. A composição gráfica utiliza a classe **abnTeX2** e a personalização local `abntex2-UFAC.sty`.
 
-Defina `UFAC-modelo-TCC.tex` como arquivo principal e escolha **pdfLaTeX**. A classe é `abntex2`, com o arquivo local `abntex2-UFAC.sty`. A bibliografia utiliza `abntex2cite` (BibTeX).
+## Arquivos
 
-O brasão da capa (`figuras/exefig.eps`) foi recuperado do [modelo da UFAC](https://github.com/mlimeira/ufac_si_template_tcc); a conversão EPS → PDF é feita por `epstopdf` durante a compilação.
+- `relatorio_estagio.tex`: arquivo principal do relatório, com capa, folha de rosto, sumário e referências;
+- `capitulos/01-introducao.tex`: problema, objetivos, justificativa, metodologia e organização do estudo;
+- `capitulos/02-fundamentacao.tex`: embasamento teórico e referências do projeto acadêmico;
+- `capitulos/03-estagio.tex`: instituição, organização de trabalho, atividades e resultados técnicos;
+- `referencias_estagio.bib`: obras efetivamente citadas;
+- `abntex2-UFAC.sty` e `figuras/exefig.eps`: personalização visual original da UFAC.
 
-## Imagens pendentes
+O exemplo do estágio de outra organização e seus arquivos compilados antigos foram retirados deste repositório. A manutenção do estilo UFAC não representa aproveitamento daquele conteúdo.
 
-Estas 18 imagens são referenciadas no documento original, mas não constavam do repositório. O comando `\incluirfigura` exibe um marcador **Imagem pendente** quando o arquivo não existe. Quando você enviar a imagem verdadeira para o caminho indicado, ela aparecerá automaticamente no PDF.
+## Compilação
 
-- `figuras/cliente.png`
-- `figuras/ppi-logo.png`
-- `figuras/organograma.png`
-- `figuras/fluxo_demanda.png`
-- `figuras/proofOfConcept.png`
-- `figuras/user.model.png`
-- `figuras/create.user.controller.png`
-- `figuras/user.routes.png`
-- `figuras/button-component-example.png`
-- `figuras/buttons-parents-component-example.png`
-- `figuras/useState-example.png`
-- `figuras/state-usage-example.png`
-- `figuras/axios-request-example.png`
-- `figuras/customers.png`
-- `figuras/home.png`
-- `figuras/schedule.png`
-- `figuras/details-tasks.png`
-- `figuras/req/REQ/Documento de Requisitos de Software - 2PI ESTUDIO_page-0001.jpg`
+No Overleaf, configure **`relatorio_estagio.tex` como arquivo principal** e selecione o compilador **pdfLaTeX**. O projeto utiliza BibTeX para referências e `epstopdf` para o brasão em EPS.
 
-**Atenção:** os marcadores não são imagens substitutas. Recupere os arquivos originais ou adapte/remova as figuras correspondentes ao escrever seu próprio relatório.
+Para compilar localmente em uma instalação LaTeX compatível:
 
-## Bibliografia
+```sh
+pdflatex -shell-escape relatorio_estagio.tex
+bibtex relatorio_estagio
+pdflatex -shell-escape relatorio_estagio.tex
+pdflatex -shell-escape relatorio_estagio.tex
+```
 
-`referencias.bib` contém registros bibliográficos, mas o texto de exemplo não usa `\cite` nem `\citeonline`. O aviso `Empty thebibliography environment` é esperado até que citações válidas sejam incluídas. Evite adicionar `\nocite{*}`, que geraria uma lista de obras não necessariamente citadas.
+## Fontes do conteúdo
 
-O texto ainda contém dados pessoais do autor original e trechos `Lorem ipsum`. Substitua-os antes de entregar seu relatório.
+- [Projeto acadêmico de estágio](https://github.com/MarcosVini753/Projeto_Estagio_UFAC)
+- [Documentação e implementação do sistema (branch dev)](https://github.com/MarcosVini753/estagio/tree/dev)
+- Fichas de controle e frequência do estágio supervisionado
+- Modelo Word institucional de relatório de estágio
+
+## Pendências para conclusão
+
+1. Confirmar dados institucionais e eventual organograma oficial com a supervisão.
+2. Inserir capturas de tela reais, diagramas selecionados e fontes das ilustrações.
+3. Conferir evidências de testes e de validação com a biblioteca; não presumir implantação em produção.
+4. Redigir o capítulo de considerações finais e recomendações.
+5. Preparar resumo, abstract, termo de aprovação, lista de ilustrações e outros elementos pré-textuais aplicáveis.
+
+**Nota de escopo:** a aplicação documentada ainda não possui autenticação institucional real, fila de espera, relatório semanal específico ou interface própria funcional para o Administrador. O relatório não apresenta essas funcionalidades como implementadas.

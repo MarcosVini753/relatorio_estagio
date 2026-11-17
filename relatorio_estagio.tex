@@ -1,0 +1,80 @@
+% Relatório de Estágio Supervisionado — Bacharelado em Sistemas de Informação / UFAC
+% Estrutura baseada no modelo Word de Relatório de Estágio da UFAC.
+% Conteúdo: Marcos Vinícius Moraes Costa — Biblioteca Central da UFAC.
+%
+% Compilação: pdfLaTeX -> BibTeX -> pdfLaTeX -> pdfLaTeX.
+
+\documentclass[
+  12pt,
+  openright,
+  oneside,
+  a4paper,
+  sumario=tradicional,
+  english,
+  brazilian
+]{abntex2}
+
+% O estilo UFAC e o brasão em figuras/exefig.eps foram preservados.
+\usepackage{abntex2-UFAC}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[outdir=./]{epstopdf} % brasão EPS do estilo UFAC
+\usepackage{booktabs}
+\usepackage[alf,abnt-emphasize=bf]{abntex2cite}
+\citeoption{AuthorYEAR}
+\usepackage{mathptmx}
+\renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
+
+\titulo{Desenvolvimento de um Sistema Web para Gestão e Controle de Uso da Sala de Informática da Biblioteca Central da Universidade Federal do Acre}
+\autor{Marcos Vinícius Moraes Costa}
+\local{Rio Branco}
+\data{2026}
+\orientador{Laura Costa Sarkis}
+\instituicao{Universidade Federal do Acre}
+\campus{Centro de Ciências Exatas e Tecnológicas}
+\curso{Curso de Bacharelado em Sistemas de Informação}
+\preambulo{Relatório de estágio supervisionado apresentado como exigência parcial para obtenção do grau de bacharel em Sistemas de Informação da Universidade Federal do Acre.}
+
+\makeatletter
+\hypersetup{
+  pdftitle={\@title},
+  pdfauthor={\@author},
+  pdfsubject={Relatório de Estágio Supervisionado},
+  colorlinks=false,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  bookmarksdepth=4
+}
+\makeatother
+
+\begin{document}
+\frenchspacing
+\pretextual
+
+\imprimircapa
+\imprimirfolhaderosto
+
+% PENDENTE: termo de aprovação e composição da banca a confirmar.
+% PENDENTE: resumo, abstract e palavras-chave depois de consolidar os resultados.
+% PENDENTE: listas de figuras, quadros e tabelas após inserção das evidências.
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+\textual
+
+\input{capitulos/01-introducao}
+\input{capitulos/02-fundamentacao}
+\input{capitulos/03-estagio}
+
+% Capítulo 4: considerações finais e recomendações, a redigir após revisão
+% das evidências e da validação com os responsáveis pelo estágio.
+
+\postextual
+\bibliography{referencias_estagio}
+
+\end{document}
