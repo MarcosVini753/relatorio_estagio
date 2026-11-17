@@ -6,7 +6,8 @@ A organização dos capítulos segue o documento **ModelodeRelatoriodeEstagio_te
 
 ## Arquivos
 
-- `relatorio_estagio.tex`: arquivo principal do relatório, com capa, folha de rosto, sumário e referências;
+- `relatorio_estagio.tex`: arquivo principal, com capa, folha de rosto, elementos pré-textuais, sumário e referências;
+- `pre-textuais.tex`: termo de aprovação, dedicatória, agradecimentos, epígrafe, resumo, abstract, listas de figuras/quadros/tabelas e siglas;
 - `capitulos/01-introducao.tex`: problema, objetivos, justificativa, metodologia e organização do estudo;
 - `capitulos/02-fundamentacao.tex`: embasamento teórico e referências do projeto acadêmico;
 - `capitulos/03-estagio.tex`: instituição, organização de trabalho, atividades e resultados técnicos;
@@ -41,6 +42,11 @@ pdflatex -shell-escape relatorio_estagio.tex
 2. Inserir capturas de tela reais, diagramas selecionados e fontes das ilustrações.
 3. Conferir evidências de testes e de validação com a biblioteca; não presumir implantação em produção.
 4. Redigir o capítulo de considerações finais e recomendações.
-5. Preparar resumo, abstract, termo de aprovação, lista de ilustrações e outros elementos pré-textuais aplicáveis.
+5. Preencher os placeholders de aprovação (data e banca), dedicatória, agradecimentos, epígrafe, resumo, abstract e palavras-chave em `pre-textuais.tex`.
+6. Revisar as listas automáticas de figuras, quadros e tabelas quando houver elementos com legendas nos capítulos.
 
 **Nota de escopo:** a aplicação documentada ainda não possui autenticação institucional real, fila de espera, relatório semanal específico ou interface própria funcional para o Administrador. O relatório não apresenta essas funcionalidades como implementadas.
+
+## Elementos antes do sumário
+
+O arquivo `pre-textuais.tex` preserva a ordem do modelo Word: termo de aprovação, dedicatória, agradecimentos, epígrafe, resumo, abstract, listas de figuras, quadros e tabelas, além da lista de siglas. Os campos entre colchetes são **placeholders**, não informações definitivas. As listas de ilustrações são geradas pelo LaTeX conforme figuras, quadros e tabelas forem incluídos. Para um quadro, use o ambiente `quadro` com `\\caption{...}`.
