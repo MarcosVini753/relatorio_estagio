@@ -1,0 +1,64 @@
+\chapter{Introdução}\label{cap:introducao}
+
+A Biblioteca Central Ruy Alberto Costa Lins, situada no Campus Sede da Universidade Federal do Acre (UFAC), em Rio Branco, disponibiliza computadores à comunidade acadêmica em sua Sala de Informática, também denominada Sala Virtual na documentação inicial do projeto. No início do estágio, o controle de utilização desse espaço era realizado por meio de fichas impressas de presença e de registros posteriormente reunidos para elaboração de relatórios. Embora essa rotina permitisse acompanhar os atendimentos, a consulta histórica e a consolidação das informações exigiam procedimentos manuais.
+
+A informatização do controle envolve mais do que a transposição da ficha de papel para uma tela. Para representar o uso de computadores, é necessário relacionar as sessões dos usuários, os horários de funcionamento, as reservas futuras, o estado dos equipamentos e eventuais ocorrências. Essas informações precisam permanecer coerentes mesmo quando uma reserva é cancelada, um computador entra em manutenção ou o usuário troca de equipamento durante a sessão.
+
+Nesse contexto, o Estágio Supervisionado teve como atividade central o desenvolvimento de um sistema web para apoiar a gestão da Sala de Informática da Biblioteca Central da UFAC. O trabalho compreendeu o levantamento das necessidades do setor, a especificação dos requisitos, a modelagem dos fluxos, a elaboração de protótipos, a implementação da aplicação, a realização de testes e a documentação do produto.
+
+O projeto acadêmico inicial orientou as primeiras decisões. Entretanto, durante o desenvolvimento, algumas propostas foram reformuladas e o escopo foi delimitado para viabilizar um produto mínimo funcional. Este relatório distingue, portanto, o que foi planejado, o que foi implementado na versão de demonstração e o que permanece como possibilidade de evolução. Da mesma forma, a existência de funcionalidades e de testes automatizados não é tomada como evidência de implantação definitiva ou de ganho de desempenho no atendimento sem avaliação específica.
+
+\section{Problema da pesquisa}\label{sec:problema}
+
+O controle manual de uso reúne informações que precisam ser consultadas de maneira articulada: identificação do usuário, computador utilizado, horários de entrada e saída e histórico dos atendimentos. Quando esses dados são armazenados em folhas impressas, a busca por registros anteriores e a preparação de totalizações por período dependem de conferência e consolidação posteriores. Também se torna mais difícil obter, durante o atendimento, uma visão integrada da disponibilidade dos computadores e dos horários reservados.
+
+Além do registro de presença, o funcionamento da sala exige a observância de regras operacionais. Uma nova reserva não pode coincidir com outra utilização válida do equipamento. Computadores indisponíveis para manutenção não devem ser oferecidos como livres. Alterações no calendário de funcionamento precisam considerar compromissos já assumidos, sem apagar as condições históricas dos atendimentos realizados. Por fim, o sistema deve apresentar informações adequadas às tarefas dos usuários da sala e da equipe responsável por sua operação.
+
+Diante desse cenário, estabeleceu-se a seguinte questão orientadora: \emph{como um sistema web pode apoiar, de maneira organizada e acessível, o registro, o acompanhamento e a produção de informações sobre a utilização dos computadores da Sala de Informática da Biblioteca Central da UFAC?}
+
+\section{Objetivos da pesquisa}\label{sec:objetivos}
+
+\subsection{Objetivo geral}
+
+Desenvolver um sistema web para organizar o registro, o acompanhamento e a geração de relatórios de utilização dos computadores da Sala de Informática da Biblioteca Central da UFAC, considerando os processos de atendimento e as regras de funcionamento do ambiente.
+
+\subsection{Objetivos específicos}
+
+Para alcançar o objetivo geral, o trabalho foi orientado pelos seguintes objetivos específicos:
+
+\begin{enumerate}
+    \item Analisar o processo manual e identificar os requisitos necessários à informatização do controle de uso.
+    \item Modelar os atores, os dados, as regras de negócio e os principais fluxos da aplicação.
+    \item Implementar a consulta de disponibilidade dos computadores e o agendamento de horários compatíveis com o funcionamento da sala.
+    \item Desenvolver o registro de entrada, permanência, troca de computador e saída, preservando o histórico das sessões.
+    \item Permitir o acompanhamento do estado operacional dos equipamentos e o registro de ocorrências.
+    \item Construir interfaces voltadas ao Usuário da Sala, ao Monitor da Sala e ao Supervisor da Biblioteca.
+    \item Produzir relatórios e indicadores derivados dos registros operacionais, com recursos de consulta e exportação.
+    \item Verificar os fluxos implementados por meio de testes e documentar as decisões técnicas e os procedimentos de continuidade do sistema.
+\end{enumerate}
+
+Esses objetivos representam o recorte adotado durante a construção do produto. A fila de espera, prevista no projeto inicial, foi excluída do escopo implementado. A autenticação institucional e a interface administrativa própria também foram mantidas como evoluções futuras.
+
+\section{Justificativa da pesquisa}\label{sec:justificativa}
+
+A necessidade de organizar os registros de atendimento motivou o desenvolvimento do sistema. Uma base estruturada de informações sobre computadores, reservas, sessões e ocorrências permite estabelecer regras uniformes para registrar e consultar a utilização do espaço. A geração de relatórios a partir dessa mesma base pode reduzir etapas de consolidação manual e apoiar o acompanhamento por data, período e equipamento. Esses benefícios são possibilidades proporcionadas pela solução; sua magnitude dependeria de avaliação posterior no ambiente de uso.
+
+O problema também apresenta relevância técnica. Foi necessário explicitar condições que, em um processo manual, poderiam depender da interpretação dos responsáveis pelo atendimento, como intervalos válidos para reservas, tolerâncias de entrada e saída, conflitos de utilização, alterações nos horários de funcionamento e correções de registros. O tratamento dessas condições está relacionado à especificação de requisitos verificáveis e à definição de regras consistentes, conforme discutido por \citeonline{sommerville2016} e na ISO/IEC/IEEE 29148:2018 \cite{iso29148_2018}.
+
+As necessidades de interação variam entre os perfis. O usuário precisa localizar um computador e registrar sua utilização; o monitor acompanha as atividades em andamento; e o supervisor configura parâmetros e analisa informações consolidadas. A organização dessas tarefas em interfaces distintas encontra fundamento nas práticas de Interação Humano-Computador e de projeto centrado nas pessoas \cite{barbosaSilva2010,iso9241_210_2019}.
+
+Do ponto de vista da formação acadêmica, o estágio possibilitou aplicar conhecimentos de Engenharia de Software, banco de dados, arquitetura de sistemas, desenvolvimento web, testes e documentação a uma demanda institucional. A preservação do código e dos artefatos técnicos também contribui para a manutenção e a eventual continuidade do produto.
+
+\section{Metodologia}\label{sec:metodologia}
+
+O trabalho foi de natureza aplicada e organizado em incrementos de desenvolvimento, com análise qualitativa do processo de atendimento como ponto de partida. Inicialmente, foram examinados os modelos de registro utilizados pela biblioteca e discutidas as necessidades operacionais com a supervisão. Essas informações subsidiaram a especificação de requisitos, a descrição de casos de uso, a elaboração de diagramas de atividades e a prototipação das interfaces.
+
+Em seguida, foram definidos o modelo de domínio, as regras de operação e a arquitetura da aplicação. A implementação foi realizada por incrementos relacionados à disponibilidade de computadores, às reservas, às sessões de uso, ao calendário operacional, às ocorrências, às interfaces dos perfis e aos relatórios. O versionamento do código e a documentação das decisões técnicas acompanharam o processo.
+
+A verificação utilizou dados fictícios, testes das regras e das interfaces de programação de aplicações (APIs), restrições de integridade no banco de dados e testes de ponta a ponta dos fluxos web. Entre os cenários previstos na documentação constam conflitos de reserva, mudanças de estado de computadores, transições de sessão, diferenciação de permissões entre perfis simulados e consistência das projeções de relatórios. Essa estratégia permitiu avaliar o comportamento implementado, sem substituir a necessidade de validação com os responsáveis pelo atendimento real.
+
+Para redigir o relatório, foram utilizados o projeto acadêmico, as fichas de frequência e os artefatos do repositório da aplicação, incluindo requisitos, arquitetura, diagramas, decisões técnicas e registros de implementação. Resultados ainda não demonstrados, como redução mensurada do tempo de atendimento e operação contínua em produção, não foram presumidos.
+
+\section{Organização do estudo}\label{sec:organizacao}
+
+O relatório segue a estrutura indicada no modelo de Relatório de Estágio da UFAC. Este capítulo apresenta o contexto, o problema, os objetivos, a justificativa e a metodologia. O Capítulo~\ref{cap:fundamentacao} reúne os fundamentos teóricos relacionados aos processos de Engenharia de Software, interação, bancos de dados, arquitetura web e qualidade. O Capítulo~\ref{cap:estagio} caracteriza o ambiente de estágio, descreve o desenvolvimento e apresenta os resultados técnicos documentados. As considerações finais e recomendações serão consolidadas em etapa posterior, após a revisão das evidências e do acompanhamento do estágio.
