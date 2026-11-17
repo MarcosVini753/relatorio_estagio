@@ -27,6 +27,14 @@
 \usepackage{mathptmx}
 \renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
 
+% Quadros têm numeração e lista próprias, como previsto no modelo Word.
+% Comandos fornecidos pela classe memoir, utilizada pelo abnTeX2.
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
 \titulo{Desenvolvimento de um Sistema Web para Gestão e Controle de Uso da Sala de Informática da Biblioteca Central da Universidade Federal do Acre}
 \autor{Marcos Vinícius Moraes Costa}
 \local{Rio Branco}
@@ -57,9 +65,9 @@
 \imprimircapa
 \imprimirfolhaderosto
 
-% PENDENTE: termo de aprovação e composição da banca a confirmar.
-% PENDENTE: resumo, abstract e palavras-chave depois de consolidar os resultados.
-% PENDENTE: listas de figuras, quadros e tabelas após inserção das evidências.
+% Elementos pré-textuais na ordem do modelo Word institucional.
+% Substituir campos entre colchetes pelos dados definitivos.
+\input{pre-textuais}
 
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
