@@ -12,14 +12,49 @@ Conforme os registros do estágio, o acompanhamento no setor foi realizado por N
 
 \section{Estrutura organizacional}\label{sec:estrutura}
 
-O projeto envolveu a relação entre a orientação acadêmica, a supervisão de estágio e as atividades operacionais da Sala de Informática. A orientadora acompanhou a dimensão acadêmica do trabalho, enquanto a supervisão do setor ofereceu referência para compreender o processo existente e discutir necessidades de sua informatização. O desenvolvimento técnico e a elaboração dos artefatos foram conduzidos no âmbito das atividades de estágio.
+A Biblioteca Central Ruy Alberto Costa Lins integra a estrutura da Universidade Federal do Acre. No organograma geral disponibilizado para este relatório, a Biblioteca Central aparece vinculada ao conjunto de Órgãos Suplementares, sob a estrutura da Reitoria e Vice-Reitoria. Para contextualizar o local do estágio, a Figura~\ref{fig:organograma-biblioteca} apresenta somente essa linha institucional, sem reproduzir os demais órgãos da UFAC.
 
-É importante distinguir essa organização de trabalho dos perfis definidos para o sistema. Na aplicação, o \emph{Usuário da Sala} representa alunos, professores ou técnicos-administrativos que utilizam os computadores; o \emph{Monitor da Sala} acompanha sessões, estados dos equipamentos, ocorrências e correções; e o \emph{Supervisor da Biblioteca} possui funcionalidades adicionais de configuração, inventário e análise gerencial. O papel de \emph{Administrador do Sistema} foi previsto arquiteturalmente, mas não recebeu interface própria no MVP.
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.83\linewidth}{!}{%
+    \begin{tikzpicture}[
+      node distance=0.8cm,
+      org/.style={
+        draw,
+        rectangle,
+        rounded corners=1pt,
+        align=center,
+        text width=7.4cm,
+        minimum height=1.05cm,
+        inner sep=6pt,
+        font=\normalsize
+      },
+      ambiente/.style={org,dashed},
+      vinculo/.style={-{Stealth[length=2.5mm]},thick}
+    ]
+      \node[org] (ufac) {\textbf{Universidade Federal do Acre (UFAC)}};
+      \node[org,below=of ufac] (reitoria) {Reitoria / Vice-Reitoria};
+      \node[org,below=of reitoria] (orgaos) {Órgãos Suplementares};
+      \node[org,below=of orgaos] (biblioteca) {\textbf{Biblioteca Central Ruy Alberto Costa Lins}};
+      \node[ambiente,below=of biblioteca] (sala) {Sala de Informática};
 
-Esses perfis descrevem responsabilidades e permissões simuladas da aplicação; não constituem, por si sós, um organograma oficial da Biblioteca Central. A inclusão de uma figura representando a estrutura administrativa formal da unidade depende de confirmação com a instituição.
+      \draw[vinculo] (ufac) -- (reitoria);
+      \draw[vinculo] (reitoria) -- (orgaos);
+      \draw[vinculo] (orgaos) -- (biblioteca);
+      \draw[vinculo,dashed] (biblioteca) -- (sala);
+    \end{tikzpicture}%
+  }
+  \caption{Recorte da estrutura da UFAC com destaque para a Biblioteca Central e o ambiente do estágio}
+  \label{fig:organograma-biblioteca}
+  \par\smallskip
+  {\footnotesize Fonte: adaptado do organograma geral da UFAC fornecido para este relatório.}
+  \par\smallskip
+  {\footnotesize Nota: a ligação tracejada identifica o ambiente do estágio e não pressupõe uma unidade administrativa formal independente.}
+\end{figure}
 
-% EVIDÊNCIA A INSERIR: organograma oficial ou representação validada pela Biblioteca.
-% Não usar a figura "organograma" do estágio do autor do template original.
+O recorte indica a posição da Biblioteca Central na estrutura universitária e destaca a Sala de Informática como local específico das atividades desenvolvidas. Não foram incluídas subdivisões administrativas internas da biblioteca, pois o organograma geral consultado não apresenta esse nível de detalhamento.
+
+A estrutura institucional não deve ser confundida com os perfis de acesso da aplicação desenvolvida. O \emph{Usuário da Sala} representa alunos, professores ou técnicos-administrativos que utilizam os computadores; o \emph{Monitor da Sala} acompanha sessões, estados dos equipamentos, ocorrências e correções; e o \emph{Supervisor da Biblioteca} possui funcionalidades adicionais de configuração, inventário e análise gerencial. O papel de \emph{Administrador do Sistema} foi previsto arquiteturalmente, mas não recebeu interface própria no MVP. Esses perfis correspondem a responsabilidades no sistema, não a cargos ou divisões confirmadas no organograma institucional.
 
 \section{Atividades desenvolvidas}\label{sec:atividades}
 
